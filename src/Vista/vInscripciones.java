@@ -39,6 +39,8 @@ public class vInscripciones extends javax.swing.JInternalFrame {
         jbSalir = new javax.swing.JButton();
         jRadioButton1 = new javax.swing.JRadioButton();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
 
@@ -67,6 +69,19 @@ public class vInscripciones extends javax.swing.JInternalFrame {
 
         jRadioButton1.setText("Materias no inscriptas");
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "ID", "Nombre", "Año"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout jpanelLayout = new javax.swing.GroupLayout(jpanel);
         jpanel.setLayout(jpanelLayout);
         jpanelLayout.setHorizontalGroup(
@@ -76,26 +91,25 @@ public class vInscripciones extends javax.swing.JInternalFrame {
                     .addGroup(jpanelLayout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jpanelLayout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpanelLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(71, 71, 71)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(50, 50, 50))
-                            .addGroup(jpanelLayout.createSequentialGroup()
-                                .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jrbEstado)
-                                    .addComponent(jbNuevo))
-                                .addGap(49, 49, 49)
-                                .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jpanelLayout.createSequentialGroup()
-                                        .addComponent(jbEliminar)
-                                        .addGap(84, 84, 84))
-                                    .addComponent(jRadioButton1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jbSalir))))
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpanelLayout.createSequentialGroup()
+                                .addComponent(jrbEstado)
+                                .addGap(261, 261, 261)
+                                .addComponent(jRadioButton1))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jpanelLayout.createSequentialGroup()
                         .addGap(151, 151, 151)
-                        .addComponent(jLabel5)))
+                        .addComponent(jLabel5))
+                    .addGroup(jpanelLayout.createSequentialGroup()
+                        .addGap(142, 142, 142)
+                        .addComponent(jbNuevo)
+                        .addGap(112, 112, 112)
+                        .addComponent(jbEliminar)
+                        .addGap(95, 95, 95)
+                        .addComponent(jbSalir)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpanelLayout.setVerticalGroup(
@@ -111,23 +125,28 @@ public class vInscripciones extends javax.swing.JInternalFrame {
                 .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton1)
                     .addComponent(jrbEstado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
                 .addGroup(jpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbNuevo)
                     .addComponent(jbEliminar)
                     .addComponent(jbSalir))
-                .addGap(22, 22, 22))
+                .addGap(56, 56, 56))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(129, 129, 129)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(329, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,6 +184,8 @@ public class vInscripciones extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JButton jbEliminar;
     private javax.swing.JButton jbNuevo;
     private javax.swing.JButton jbSalir;
