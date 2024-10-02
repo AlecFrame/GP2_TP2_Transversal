@@ -40,17 +40,17 @@ public class AlumnoData {
         }
     }
     
-    public Alumno buscarAlumno(int id) {
+    public Alumno buscarAlumno(int dni) {
         Alumno alumno = null;
         try{
-            String sql = "select * from alumno where idAlumno = ?";
+            String sql = "select dni,nombre,apellido,fechaNacimiento,estado from alumno where dni = ?";
             
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
+            ps.setInt(1, dni);
             
             ResultSet resultado = ps.executeQuery();
             while(resultado.next()) {
-                alumno = new Alumno(resultado.getInt("dni"),resultado.getInt("idAlumno"),resultado.getString("apellido"),
+                alumno = new Alumno(resultado.getInt("dni"),resultado.getString("apellido"),
                     resultado.getString("nombre"),resultado.getDate("fechaNacimiento").toLocalDate(),
                     resultado.getBoolean("estado"));
             }
@@ -145,6 +145,21 @@ public class AlumnoData {
         }catch(SQLException e) {
             System.err.println("Datos de alumno incompatibles: "+e);
         }
+    }
+    
+    public void cambiarEstado(int dni) throws SQLException {
+        int filas=0;
+        String sql = "update alumno set estado=? where dni=?";
+                
+        PreparedStatement st = con.prepareStatement(sql);
+        st.setBoolean(1, false);
+        st.setInt(2, dni);
+                
+        filas = st.executeUpdate();
+        if (filas>0) {
+            System.out.println("Estado de Alumno actualizado con exito");
+        }else
+            System.err.println("No se encontra el dni del alumno");
     }
     
     public void actualizarAlumno(Alumno a,String cambiar, int ID) {

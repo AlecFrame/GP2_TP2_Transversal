@@ -1,6 +1,11 @@
 
 package Vista;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     public VentanaPrincipal() {
@@ -126,10 +131,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jmiAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAlumnoActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        vAlumno v = new vAlumno();
-        v.setVisible(true);
-        escritorio.add(v);
-        escritorio.moveToFront(v);
+        vAlumno v;
+        try {
+            v = new vAlumno();
+            v.setVisible(true);
+            escritorio.add(v);
+            escritorio.moveToFront(v);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error de carga de datos");
+        }
     }//GEN-LAST:event_jmiAlumnoActionPerformed
 
     private void jmiMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiMateriaActionPerformed
