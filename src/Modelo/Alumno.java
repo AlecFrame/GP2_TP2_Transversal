@@ -83,7 +83,6 @@ public class Alumno {
 
     @Override
     public String toString() {
-        return "idAlumno, dni, nombre, apellido, fechaNacimiento, estado\n"
-                +idAlumno+", "+dni+", "+nombre+", "+apellido+", "+fechaNacimiento.format(formato)+", "+((estado)? "activo":"inactivo");
+        return dni+", "+apellido+", "+nombre+", "+((estado)? "activo":"inactivo");
     }
 }

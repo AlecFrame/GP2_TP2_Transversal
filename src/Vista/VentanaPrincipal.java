@@ -2,8 +2,6 @@
 package Vista;
 
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class VentanaPrincipal extends javax.swing.JFrame {
@@ -37,11 +35,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 737, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 273, Short.MAX_VALUE)
+            .addGap(0, 483, Short.MAX_VALUE)
         );
 
         jmAlumno.setText("Alumno");
@@ -154,10 +152,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jmiManipulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiManipulacionActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        vInscripciones v = new vInscripciones();
-        v.setVisible(true);
-        escritorio.add(v);
-        escritorio.moveToFront(v);
+        vInscripciones v;
+        try {
+            v = new vInscripciones();
+            v.setVisible(true);
+            escritorio.add(v);
+            escritorio.moveToFront(v);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error de carga de datos");
+        }
     }//GEN-LAST:event_jmiManipulacionActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed

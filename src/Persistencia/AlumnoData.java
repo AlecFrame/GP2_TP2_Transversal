@@ -60,6 +60,26 @@ public class AlumnoData {
         return alumno;
     }
     
+    public Alumno buscarAlumnoID(int id) {
+        Alumno alumno = null;
+        try{
+            String sql = "select * from alumno where idAlumno = ?";
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            
+            ResultSet resultado = ps.executeQuery();
+            while(resultado.next()) {
+                alumno = new Alumno(resultado.getInt("dni"),resultado.getInt("idAlumno"),resultado.getString("apellido"),
+                    resultado.getString("nombre"),resultado.getDate("fechaNacimiento").toLocalDate(),
+                    resultado.getBoolean("estado"));
+            }
+        }catch(SQLException e) {
+            System.err.println("Alumno no encontrado "+e);
+        }
+        return alumno;
+    }
+    
     public void eliminarAlumno(int id) {
         try{
             String sql = "delete from alumno where idAlumno = ?";

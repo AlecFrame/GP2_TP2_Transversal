@@ -1,6 +1,8 @@
 
 package Modelo;
 
+import java.util.Objects;
+
 
 public class Materia {
    private int idMateria;
@@ -60,4 +62,40 @@ public class Materia {
     public String toString() {
         return nombre+" "+anio+", estado: "+((estado)? "activo":"inactivo");
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 37 * hash + this.idMateria;
+        hash = 37 * hash + Objects.hashCode(this.nombre);
+        hash = 37 * hash + this.anio;
+        hash = 37 * hash + (this.estado ? 1 : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Materia other = (Materia) obj;
+        if (this.idMateria != other.idMateria) {
+            return false;
+        }
+        if (this.anio != other.anio) {
+            return false;
+        }
+        if (this.estado != other.estado) {
+            return false;
+        }
+        return Objects.equals(this.nombre, other.nombre);
+    }
+    
+    
 }
