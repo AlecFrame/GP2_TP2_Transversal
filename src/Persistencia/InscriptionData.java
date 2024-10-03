@@ -124,4 +124,39 @@ public class InscriptionData {
         return lista;
     }
     
+    public ArrayList<Inscripcion> InscripcionesDeAlumno(Alumno a) throws SQLException {
+        ArrayList<Inscripcion> lista = new ArrayList<>();
+        
+        MateriaData dataM = new MateriaData(con);
+        
+        String sql = "SELECT * From inscripcion Where idAlumno=?";
+        
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, a.getIdAlumno());
+        
+        ResultSet r = ps.executeQuery();
+        
+        while (r.next()) {
+            Materia m = dataM.buscarMateria(r.getInt("idMateria"));
+            lista.add(new Inscripcion(r.getInt("idInscripcion"),r.getInt("nota"),a,m));
+        }
+        
+        return lista;
+    }
+    
+    public void ActualizarNota(double nota, int id) throws SQLException {
+        int filas = 0;
+        String sql = "update inscripcion set nota=? where idInscripcion=?";
+
+        PreparedStatement st = con.prepareStatement(sql);
+        st.setDouble(1, nota);
+        st.setInt(2, id);
+
+        filas = st.executeUpdate();
+        if (filas>0) {
+                JOptionPane.showMessageDialog(null, "Nota actualizada con exito");
+            }else
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar la nota");
+    }
+    
 }

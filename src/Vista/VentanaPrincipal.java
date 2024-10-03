@@ -166,10 +166,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        vActualizacionNotas v = new vActualizacionNotas();
-        v.setVisible(true);
-        escritorio.add(v);
-        escritorio.moveToFront(v);
+        vActualizacionNotas v;
+        try {
+            v = new vActualizacionNotas();
+            v.setVisible(true);
+            escritorio.add(v);
+            escritorio.moveToFront(v);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error de carga de datos");
+        }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jmiAlumnosPorMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAlumnosPorMateriaActionPerformed

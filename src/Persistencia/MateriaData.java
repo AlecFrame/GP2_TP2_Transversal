@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
 
 public class MateriaData {
     private Connection con;
@@ -21,7 +22,7 @@ public class MateriaData {
                     + " values (?, ?, ?, ?);";
 
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, m.getIdMateria());
+            if (m.getIdMateria()==-1) ps.setNull(1, java.sql.Types.INTEGER); else ps.setInt(1, m.getIdMateria());
             ps.setString(2, m.getNombre());
             ps.setInt(3, m.getAnio());
             ps.setBoolean(4, m.isEstado());
@@ -29,9 +30,11 @@ public class MateriaData {
             int filas = ps.executeUpdate();
             if (filas>0) {
                 System.out.println("Materia Registrada con exito");
+                JOptionPane.showMessageDialog(null, "Materia Registrada con exito");
             }
         }catch(SQLException e) {
             System.err.println("Datos de materia son incompatibles");
+            JOptionPane.showMessageDialog(null, "Datos de amteria son incompatibles","Atencion",JOptionPane.WARNING_MESSAGE);
         }
     }
     
@@ -50,6 +53,7 @@ public class MateriaData {
             }
         }catch(SQLException e) {
             System.err.println("Materia no encontrada "+e);
+            JOptionPane.showMessageDialog(null, "Código de materia no encontrada","Atencion",JOptionPane.WARNING_MESSAGE);
         }
         return materia;
     }
@@ -64,10 +68,12 @@ public class MateriaData {
             int filas = ps.executeUpdate();
             if (filas>0) {
                 System.out.println("Se ha eliminado la materia correctamente");
+                JOptionPane.showMessageDialog(null, "Se ha eliminado a la materia correctamente");
             }else
-                System.err.println("No se ha encontrado la materia");
+                JOptionPane.showMessageDialog(null, "No se ha encontrado a la materia","Atencion",JOptionPane.WARNING_MESSAGE);
         }catch(SQLException e) {
             System.err.println("Materia no encontrada "+e);
+            JOptionPane.showMessageDialog(null, "Materia no encontrada","Atencion",JOptionPane.WARNING_MESSAGE);
         }
     }
     
@@ -84,10 +90,10 @@ public class MateriaData {
 
                     filas = st.executeUpdate();
                 }else
-                    System.err.println("No se actualizo el nombre de la amteria ("+m.getIdMateria()+") porque es nulo");
+                    JOptionPane.showMessageDialog(null, "Nombre de materia nulo","Atencion",JOptionPane.WARNING_MESSAGE);
             }
             if (cambiar.contains("anio")) {
-                if (m.getAnio()!=0) {
+                if (m.getAnio()>0) {
                     String sql = "update materia set anio=? where idMateria=?";
 
                     PreparedStatement st = con.prepareStatement(sql);
@@ -96,7 +102,7 @@ public class MateriaData {
 
                     filas = st.executeUpdate();
                 }else
-                    System.err.println("No se actualizo el dni de la materia ("+m.getIdMateria()+") porque es 0");
+                    JOptionPane.showMessageDialog(null, "Año de materia inferior a 1 es invalido","Atencion",JOptionPane.WARNING_MESSAGE);
             }
             if (cambiar.contains("estado")) {
                 String sql = "update materia set estado=? where idMateria=?";
@@ -109,10 +115,12 @@ public class MateriaData {
             }
             if (filas>0) {
                 System.out.println("Materia ("+m.getIdMateria()+") actualizado con exito");
+                JOptionPane.showMessageDialog(null, "Materia actualizada con exito");
             }else
-                System.err.println("No se encontra el codigo de la Materia");
+                JOptionPane.showMessageDialog(null, "No se encuentra el código de la materia","Atencion",JOptionPane.WARNING_MESSAGE);
         }catch(SQLException e) {
             System.err.println("Datos de materia incompatibles: "+e);
+            JOptionPane.showMessageDialog(null, "Datos de materia incompatibles","Atencion",JOptionPane.WARNING_MESSAGE);
         }
     }
     
@@ -126,9 +134,9 @@ public class MateriaData {
                 
         filas = st.executeUpdate();
         if (filas>0) {
-            System.out.println("Estado de Alumno actualizado con exito");
+            JOptionPane.showMessageDialog(null, "Estado de la materia actualizada con exito");
         }else
-            System.err.println("No se encontra el dni del alumno");
+            JOptionPane.showMessageDialog(null, "No se encuentra el código de la materia","Atencion",JOptionPane.WARNING_MESSAGE);
     }
     
     public void motrarTablaMateria() throws SQLException {

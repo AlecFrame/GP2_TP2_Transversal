@@ -224,27 +224,39 @@ public class vAlumno extends javax.swing.JInternalFrame {
         if (!jtfDNI.getText().equalsIgnoreCase("")) {
             try {
                 int dnii = Integer.parseInt(jtfDNI.getText());
+                
                 AlumnoData data = new AlumnoData(con);
+                ArrayList<Alumno> list = data.listarAlumnos();
+                boolean encontrado = false;
                 
-                Alumno a = data.buscarAlumno(dnii);
+                for (Alumno a: list) {
+                    if (a.getDni()==dnii) {
+                        encontrado = true;
+                    }
+                }
                 
-                Limpiar();
-                Habilitar();
-                jtfDNI.setText(String.valueOf(a.getDni()));
-                jtfNombre.setText(a.getNombre());
-                jtfApellido.setText(a.getApellido());
-                jdFecha.setDate(java.sql.Date.valueOf(a.getFechaNacimiento()));
-                jrbEstado.setSelected(a.isEstado());
-                
+                if (encontrado) {
+                    Alumno a = data.buscarAlumno(dnii);
+
+                    Limpiar();
+                    Habilitar();
+                    jtfDNI.setText(String.valueOf(a.getDni()));
+                    jtfNombre.setText(a.getNombre());
+                    jtfApellido.setText(a.getApellido());
+                    jdFecha.setDate(java.sql.Date.valueOf(a.getFechaNacimiento()));
+                    jrbEstado.setSelected(a.isEstado());
+                }else
+                    JOptionPane.showMessageDialog(this, "DNI de Alumno no encontrado","Atencion",JOptionPane.WARNING_MESSAGE);
             } catch(Exception e) {
-                JOptionPane.showMessageDialog(this, "El número de documento tiene que ser un número");
+                JOptionPane.showMessageDialog(this, "El número de documento solo permite números","Atencion",JOptionPane.WARNING_MESSAGE);
             }
         }else
-            JOptionPane.showMessageDialog(this, "El campo Documento está vacio");
+            JOptionPane.showMessageDialog(this, "El campo Documento está vacio","Atencion",JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
         Habilitar();
+        Limpiar();
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
@@ -262,14 +274,29 @@ public class vAlumno extends javax.swing.JInternalFrame {
                 AlumnoData data = new AlumnoData(con);
                 Alumno a = new Alumno(dnii,nombre,apellido,fecha,estado);
                 
-                data.guardarAlumno(a);
-                cargarLista();
-                Limpiar();
+                ArrayList<Alumno> list = data.listarAlumnos();
+                boolean encontrado = false;
+                
+                for (Alumno aa: list) {
+                    if (aa.getDni()==dnii) {
+                        encontrado = true;
+                        a = aa;
+                    }
+                }
+                
+                if (!encontrado) {
+                    data.guardarAlumno(a);
+                    cargarLista();
+                    Limpiar();
+                }else {
+                    data.actualizarAlumno(a, "dni,nombre,apellido,fecha,estado");
+                    JOptionPane.showMessageDialog(this, "El Alumno con el dni: "+dni+" fue actualizado");
+                }
             } catch(Exception e) {
-                JOptionPane.showMessageDialog(this, "El número de documento tiene que ser un número");
+                JOptionPane.showMessageDialog(this, "El número de documento tiene que ser un número","Atencion",JOptionPane.WARNING_MESSAGE);
             }
         }else
-            JOptionPane.showMessageDialog(this, "Algunos campos están vacios");
+            JOptionPane.showMessageDialog(this, "Algunos campos están vacios","Atencion",JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
@@ -282,10 +309,10 @@ public class vAlumno extends javax.swing.JInternalFrame {
                 cargarLista();
                 Limpiar();
             } catch(Exception e) {
-                JOptionPane.showMessageDialog(this, "El número de documento tiene que ser un número");
+                JOptionPane.showMessageDialog(this, "El número de documento tiene que ser un número","Atencion",JOptionPane.WARNING_MESSAGE);
             }
         }else
-            JOptionPane.showMessageDialog(this, "El campo Documento está vacio");
+            JOptionPane.showMessageDialog(this, "El campo Documento está vacio","Atencion",JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_jbEliminarActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed

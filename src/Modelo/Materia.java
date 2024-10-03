@@ -21,6 +21,7 @@ public class Materia {
     }
 
     public Materia(String nombre, int anioMateria, boolean activo) {
+        this.idMateria = -1;
         this.nombre = nombre;
         this.anio = anioMateria;
         this.estado = activo;

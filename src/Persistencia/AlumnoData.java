@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class AlumnoData {
     private Connection con;
@@ -34,9 +36,11 @@ public class AlumnoData {
             int filas = ps.executeUpdate();
             if (filas>0) {
                 System.out.println("Alumno Registrado con exito");
+                JOptionPane.showMessageDialog(null, "Alumno Registrado con exito");
             }
         }catch(SQLException e) {
             System.err.println("Datos de alumno incompatibles");
+            JOptionPane.showMessageDialog(null, "Datos de alumno incompatibles","Atencion",JOptionPane.WARNING_MESSAGE);
         }
     }
     
@@ -56,6 +60,7 @@ public class AlumnoData {
             }
         }catch(SQLException e) {
             System.err.println("Alumno no encontrado "+e);
+            JOptionPane.showMessageDialog(null, "Alumno no encontrado","Atencion",JOptionPane.WARNING_MESSAGE);
         }
         return alumno;
     }
@@ -76,6 +81,7 @@ public class AlumnoData {
             }
         }catch(SQLException e) {
             System.err.println("Alumno no encontrado "+e);
+            JOptionPane.showMessageDialog(null, "Alumno no encontrado","Atencion",JOptionPane.WARNING_MESSAGE);
         }
         return alumno;
     }
@@ -90,10 +96,14 @@ public class AlumnoData {
             int filas = ps.executeUpdate();
             if (filas>0) {
                 System.out.println("Se ha eliminado al alumno correctamente");
-            }else
+                JOptionPane.showMessageDialog(null, "Se ha eliminado al alumno correctamente");
+            }else {
                 System.err.println("No se ha encontrado al alumno");
+                JOptionPane.showMessageDialog(null, "Alumno no encontrado","Atencion",JOptionPane.WARNING_MESSAGE);
+            }
         }catch(SQLException e) {
             System.err.println("Alumno no encontrado "+e);
+            JOptionPane.showMessageDialog(null, "Alumno no encontrado","Atencion",JOptionPane.WARNING_MESSAGE);
         }
     }
     
@@ -110,7 +120,7 @@ public class AlumnoData {
 
                     filas = st.executeUpdate();
                 }else
-                    System.err.println("No se actualizo el nombre del alumno ("+a.getIdAlumno()+") porque es nulo");
+                    JOptionPane.showMessageDialog(null, "Nombre de alumno nulo","Atencion",JOptionPane.WARNING_MESSAGE);
             }
             if (cambiar.contains("apellido")) {
                 if (a.getApellido()!=null) {
@@ -122,7 +132,7 @@ public class AlumnoData {
 
                     filas = st.executeUpdate();
                 }else
-                    System.err.println("No se actualizo el apellido del alumno ("+a.getIdAlumno()+") porque es nulo");
+                    JOptionPane.showMessageDialog(null, "Apellido de alumno nulo","Atencion",JOptionPane.WARNING_MESSAGE);
             }
             if (cambiar.contains("dni")) {
                 if (a.getDni()!=0) {
@@ -134,7 +144,7 @@ public class AlumnoData {
 
                     filas = st.executeUpdate();
                 }else
-                    System.err.println("No se actualizo el dni del alumno ("+a.getIdAlumno()+") porque es 0");
+                    JOptionPane.showMessageDialog(null, "DNI de alumno 0","Atencion",JOptionPane.WARNING_MESSAGE);
             }
             if (cambiar.contains("fechaNacimiento")) {
                 if (a.getFechaNacimiento()!=null) {
@@ -146,7 +156,7 @@ public class AlumnoData {
 
                     filas = st.executeUpdate();
                 }else
-                    System.err.println("No se actualizo la fecha de nacimiento del alumno ("+a.getIdAlumno()+") porque es nulo");
+                    JOptionPane.showMessageDialog(null, "FechaNacimiento de alumno nulo","Atencion",JOptionPane.WARNING_MESSAGE);
             }
             if (cambiar.contains("estado")) {
                 String sql = "update alumno set estado=? where idAlumno=?";
@@ -160,10 +170,12 @@ public class AlumnoData {
             
             if (filas>0) {
                 System.out.println("Alumno ("+a.getIdAlumno()+") actualizado con exito");
+                JOptionPane.showMessageDialog(null, "Alumno Actualizado con exito");
             }else
-                System.err.println("No se encontra la id del alumno");
+                JOptionPane.showMessageDialog(null, "No se encuentra la ID del alumno","Atencion",JOptionPane.WARNING_MESSAGE);
         }catch(SQLException e) {
             System.err.println("Datos de alumno incompatibles: "+e);
+            JOptionPane.showMessageDialog(null, "Datos de alumno incompatibles","Atencion",JOptionPane.WARNING_MESSAGE);
         }
     }
     
@@ -178,8 +190,9 @@ public class AlumnoData {
         filas = st.executeUpdate();
         if (filas>0) {
             System.out.println("Estado de Alumno actualizado con exito");
+            JOptionPane.showMessageDialog(null, "Estado de Alumno actualizado con exito");
         }else
-            System.err.println("No se encontra el dni del alumno");
+            JOptionPane.showMessageDialog(null, "No se encuentra el DNI del alumno","Atencion",JOptionPane.WARNING_MESSAGE);
     }
     
     public void actualizarAlumno(Alumno a,String cambiar, int ID) {
@@ -195,7 +208,7 @@ public class AlumnoData {
 
                     filas = st.executeUpdate();
                 }else
-                    System.err.println("No se actualizo el nombre del alumno ("+a.getIdAlumno()+") porque es nulo");
+                    JOptionPane.showMessageDialog(null, "nombre de alumno nulo","Atencion",JOptionPane.WARNING_MESSAGE);
             }
             if (cambiar.contains("apellido")) {
                 if (a.getApellido()!=null) {
@@ -207,7 +220,7 @@ public class AlumnoData {
 
                     filas = st.executeUpdate();
                 }else
-                    System.err.println("No se actualizo el apellido del alumno ("+a.getIdAlumno()+") porque es nulo");
+                    JOptionPane.showMessageDialog(null, "Apellido de alumno nulo","Atencion",JOptionPane.WARNING_MESSAGE);
             }
             if (cambiar.contains("dni")) {
                 if (a.getDni()!=0) {
@@ -219,7 +232,7 @@ public class AlumnoData {
 
                     filas = st.executeUpdate();
                 }else
-                    System.err.println("No se actualizo el dni del alumno ("+a.getIdAlumno()+") porque es 0");
+                    JOptionPane.showMessageDialog(null, "No se actualizo al alumno porque su DNI es 0","Atencion",JOptionPane.WARNING_MESSAGE);
             }
             if (cambiar.contains("fechaNacimiento")) {
                 if (a.getFechaNacimiento()!=null) {
@@ -231,7 +244,7 @@ public class AlumnoData {
 
                     filas = st.executeUpdate();
                 }else
-                    System.err.println("No se actualizo la fecha de nacimiento del alumno ("+a.getIdAlumno()+") porque es nulo");
+                    JOptionPane.showMessageDialog(null, "Fecha de nacimiento nula","Atencion",JOptionPane.WARNING_MESSAGE);
             }
             if (cambiar.contains("estado")) {
                 String sql = "update alumno set estado=? where idAlumno=?";
@@ -252,14 +265,16 @@ public class AlumnoData {
 
                     filas = st.executeUpdate();
                 }else
-                    System.err.println("No se actualizo el idAlumno del alumno ("+a.getIdAlumno()+") porque es incompatible o ya existe");
+                    JOptionPane.showMessageDialog(null, "No se actualizo el ID del alumno porque es incompatible o ya existe","Atencion",JOptionPane.WARNING_MESSAGE);
             }
             if (filas>0) {
                 System.out.println("Alumno ("+a.getIdAlumno()+") actualizado con exito");
+                JOptionPane.showMessageDialog(null, "Alumno actualizado con exito");
             }else
-                System.err.println("No se encontra la id del alumno");
+                JOptionPane.showMessageDialog(null, "No se encuentra el ID del alumno","Atencion",JOptionPane.WARNING_MESSAGE);
         }catch(SQLException e) {
             System.err.println("Datos de alumno incompatibles: "+e);
+            JOptionPane.showMessageDialog(null, "Datos de alumno incompatibles","Atencion",JOptionPane.WARNING_MESSAGE);
         }
         
     }
@@ -273,5 +288,21 @@ public class AlumnoData {
             String estado = (resultado.getBoolean("estado"))? "activo":"inactivo";
             System.out.println(resultado.getString("idAlumno")+", "+resultado.getString("dni")+", "+resultado.getString("nombre")+", "+resultado.getString("apellido")+", "+fecha.format(formato)+", "+estado);
         }
+    }
+    
+    public ArrayList<Alumno> listarAlumnos() throws SQLException {
+        ArrayList<Alumno> lista = new ArrayList<>();
+        String sql = "SELECT idAlumno,dni,nombre,apellido,fechaNacimiento,estado FROM alumno ORDER BY idAlumno";
+        
+        PreparedStatement ps = con.prepareStatement(sql);
+        
+        ResultSet r = ps.executeQuery();
+        
+        while (r.next()) {
+            LocalDate fecha = r.getDate("fechaNacimiento").toLocalDate();
+            lista.add(new Alumno(r.getInt("dni"),r.getInt("idAlumno"),r.getString("nombre"),r.getString("apellido"),fecha,r.getBoolean("estado")));
+        }
+        
+        return lista;
     }
 }

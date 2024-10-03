@@ -238,7 +238,7 @@ public class vInscripciones extends javax.swing.JInternalFrame {
             
             cargarTabla();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Consulta mal ejecutada: "+ex);
+            JOptionPane.showMessageDialog(this, "Consulta mal ejecutada: "+ex,"Atencion",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jrbInsActionPerformed
    
@@ -261,7 +261,7 @@ public class vInscripciones extends javax.swing.JInternalFrame {
             
             cargarTabla();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Consulta mal ejecutada: "+ex);
+            JOptionPane.showMessageDialog(this, "Consulta mal ejecutada: "+ex,"Atencion",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jcbAlumnoItemStateChanged
 
@@ -278,7 +278,7 @@ public class vInscripciones extends javax.swing.JInternalFrame {
             
             cargarTabla();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Consulta mal ejecutada: "+ex);
+            JOptionPane.showMessageDialog(this, "Consulta mal ejecutada: "+ex,"Atencion",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jrbNoInsActionPerformed
 
@@ -301,7 +301,7 @@ public class vInscripciones extends javax.swing.JInternalFrame {
                 jbEliminar.setEnabled(false);
             }
         }catch(Exception e) {
-            JOptionPane.showMessageDialog(this, "Húbo algún problema con los tipos de datos");
+            JOptionPane.showMessageDialog(this, "Húbo algún problema con los tipos de datos","Atencion",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jTableMouseClicked
         
@@ -325,7 +325,7 @@ public class vInscripciones extends javax.swing.JInternalFrame {
             jbInscribir.setEnabled(false);
             cargarTabla();
         }catch(NumberFormatException | SQLException e) {
-            JOptionPane.showMessageDialog(this, "Húbo algún problema con los tipos de datos: "+e);
+            JOptionPane.showMessageDialog(this, "Húbo algún problema con los tipos de datos: "+e,"Atencion",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jbInscribirActionPerformed
 
@@ -349,7 +349,7 @@ public class vInscripciones extends javax.swing.JInternalFrame {
             jbEliminar.setEnabled(false);
             cargarTabla();
         }catch(NumberFormatException | SQLException e) {
-            JOptionPane.showMessageDialog(this, "Húbo algún problema con los tipos de datos: "+e);
+            JOptionPane.showMessageDialog(this, "Húbo algún problema con los tipos de datos: "+e,"Atencion",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jbEliminarActionPerformed
     
@@ -372,7 +372,7 @@ public class vInscripciones extends javax.swing.JInternalFrame {
     }
     
     public void cargarCabecera() {
-        modelo.addColumn("ID");
+        modelo.addColumn("Código");
         modelo.addColumn("Nombre");
         modelo.addColumn("Año");
         jTable.setModel(modelo);
