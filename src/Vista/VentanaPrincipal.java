@@ -23,11 +23,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jmiAlumno = new javax.swing.JMenuItem();
         jmMateria = new javax.swing.JMenu();
         jmiMateria = new javax.swing.JMenuItem();
-        jmAdministracion = new javax.swing.JMenu();
-        jmiManipulacion = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jmConsultas = new javax.swing.JMenu();
-        jmiAlumnosPorMateria = new javax.swing.JMenuItem();
         jmSalir = new javax.swing.JMenu();
         jmiSalir = new javax.swing.JMenuItem();
 
@@ -67,38 +62,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jmMateria.add(jmiMateria);
 
         jMenuBar1.add(jmMateria);
-
-        jmAdministracion.setText("Administración");
-
-        jmiManipulacion.setText("Manejo de Inscripciones");
-        jmiManipulacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiManipulacionActionPerformed(evt);
-            }
-        });
-        jmAdministracion.add(jmiManipulacion);
-
-        jMenuItem4.setText("Manipulación de notas");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jmAdministracion.add(jMenuItem4);
-
-        jMenuBar1.add(jmAdministracion);
-
-        jmConsultas.setText("Consultas");
-
-        jmiAlumnosPorMateria.setText("Alumnos por materia");
-        jmiAlumnosPorMateria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiAlumnosPorMateriaActionPerformed(evt);
-            }
-        });
-        jmConsultas.add(jmiAlumnosPorMateria);
-
-        jMenuBar1.add(jmConsultas);
 
         jmSalir.setText("Salir");
 
@@ -151,48 +114,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         escritorio.moveToFront(v);
     }//GEN-LAST:event_jmiMateriaActionPerformed
 
-    private void jmiManipulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiManipulacionActionPerformed
-        escritorio.removeAll();
-        escritorio.repaint();
-        vInscripciones v;
-        try {
-            v = new vInscripciones();
-            v.setVisible(true);
-            escritorio.add(v);
-            escritorio.moveToFront(v);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error de carga de datos");
-        }
-    }//GEN-LAST:event_jmiManipulacionActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        escritorio.removeAll();
-        escritorio.repaint();
-        vActualizacionNotas v;
-        try {
-            v = new vActualizacionNotas();
-            v.setVisible(true);
-            escritorio.add(v);
-            escritorio.moveToFront(v);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error de carga de datos");
-        }
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
-    private void jmiAlumnosPorMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAlumnosPorMateriaActionPerformed
-        escritorio.removeAll();
-        escritorio.repaint();
-        vConsultaAlumnoPorMateria v = null;
-        try {
-            v = new vConsultaAlumnoPorMateria();
-        } catch (SQLException ex) {
-            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        v.setVisible(true);
-        escritorio.add(v);
-        escritorio.moveToFront(v);
-    }//GEN-LAST:event_jmiAlumnosPorMateriaActionPerformed
-
     private void jmiSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_jmiSalirActionPerformed
@@ -200,15 +121,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenu jmAdministracion;
     private javax.swing.JMenu jmAlumno;
-    private javax.swing.JMenu jmConsultas;
     private javax.swing.JMenu jmMateria;
     private javax.swing.JMenu jmSalir;
     private javax.swing.JMenuItem jmiAlumno;
-    private javax.swing.JMenuItem jmiAlumnosPorMateria;
-    private javax.swing.JMenuItem jmiManipulacion;
     private javax.swing.JMenuItem jmiMateria;
     private javax.swing.JMenuItem jmiSalir;
     // End of variables declaration//GEN-END:variables

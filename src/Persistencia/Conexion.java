@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 
 public class Conexion {
     private static String URL = "jdbc:mysql://localhost/";
-    private static String BD = "universidadulp";
+    private static String BD = "gp2_UniversidadULP_Transversal";
     private static String USUARIO = "root";
     private static String PASSWORD = "";
     

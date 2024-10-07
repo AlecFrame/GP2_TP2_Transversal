@@ -116,7 +116,6 @@ public class MateriaData {
             }
             if (filas>0) {
                 System.out.println("Materia ("+m.getIdMateria()+") actualizado con exito");
-                JOptionPane.showMessageDialog(null, "Materia actualizada con exito");
             }else
                 JOptionPane.showMessageDialog(null, "No se encuentra el código de la materia","Atencion",JOptionPane.WARNING_MESSAGE);
         }catch(SQLException e) {

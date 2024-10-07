@@ -265,14 +265,14 @@ public class vAlumno extends javax.swing.JInternalFrame {
         String apellido = jtfApellido.getText();
         boolean estado = jrbEstado.isSelected();
         
-        if (!(dni==""|nombre==""|apellido==""|jdFecha.getDate()==null)) {
+        if (!(dni.isEmpty()|nombre.isEmpty()|apellido.isEmpty()|jdFecha.getDate()==null)) {
             java.util.Date utilDate = jdFecha.getDate();
             Date sqlDate = new Date(utilDate.getTime());
             LocalDate fecha = sqlDate.toLocalDate();
             try {
                 int dnii = Integer.parseInt(dni);
                 AlumnoData data = new AlumnoData(con);
-                Alumno a = new Alumno(dnii,nombre,apellido,fecha,estado);
+                Alumno a = new Alumno(dnii,apellido,nombre,fecha,estado);
                 
                 ArrayList<Alumno> list = data.listarAlumnos();
                 boolean encontrado = false;
@@ -280,7 +280,6 @@ public class vAlumno extends javax.swing.JInternalFrame {
                 for (Alumno aa: list) {
                     if (aa.getDni()==dnii) {
                         encontrado = true;
-                        a = aa;
                     }
                 }
                 
@@ -289,7 +288,7 @@ public class vAlumno extends javax.swing.JInternalFrame {
                     cargarLista();
                     Limpiar();
                 }else {
-                    data.actualizarAlumno(a, "dni,nombre,apellido,fecha,estado");
+                    data.actualizarAlumno(a, "nombre,apellido,fecha,estado");
                     JOptionPane.showMessageDialog(this, "El Alumno con el dni: "+dni+" fue actualizado");
                 }
             } catch(Exception e) {

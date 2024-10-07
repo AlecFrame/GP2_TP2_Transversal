@@ -112,11 +112,11 @@ public class AlumnoData {
             int filas=0;
             if (cambiar.contains("nombre")) {
                 if (a.getNombre()!=null) {
-                    String sql = "update alumno set nombre=? where idAlumno=?";
-
+                    String sql = "update alumno set nombre=? where dni=?";
+                    
                     PreparedStatement st = con.prepareStatement(sql);
                     st.setString(1, a.getNombre());
-                    st.setInt(2, a.getIdAlumno());
+                    st.setInt(2, a.getDni());
 
                     filas = st.executeUpdate();
                 }else
@@ -124,11 +124,11 @@ public class AlumnoData {
             }
             if (cambiar.contains("apellido")) {
                 if (a.getApellido()!=null) {
-                    String sql = "update alumno set apellido=? where idAlumno=?";
+                    String sql = "update alumno set apellido=? where dni=?";
 
                     PreparedStatement st = con.prepareStatement(sql);
                     st.setString(1, a.getApellido());
-                    st.setInt(2, a.getIdAlumno());
+                    st.setInt(2, a.getDni());
 
                     filas = st.executeUpdate();
                 }else
@@ -148,29 +148,28 @@ public class AlumnoData {
             }
             if (cambiar.contains("fechaNacimiento")) {
                 if (a.getFechaNacimiento()!=null) {
-                    String sql = "update alumno set fechaNacimiento=? where idAlumno=?";
+                    String sql = "update alumno set fechaNacimiento=? where dni=?";
 
                     PreparedStatement st = con.prepareStatement(sql);
                     st.setDate(1, java.sql.Date.valueOf(a.getFechaNacimiento()));
-                    st.setInt(2, a.getIdAlumno());
+                    st.setInt(2, a.getDni());
 
                     filas = st.executeUpdate();
                 }else
                     JOptionPane.showMessageDialog(null, "FechaNacimiento de alumno nulo","Atencion",JOptionPane.WARNING_MESSAGE);
             }
             if (cambiar.contains("estado")) {
-                String sql = "update alumno set estado=? where idAlumno=?";
+                String sql = "update alumno set estado=? where dni=?";
                 
                 PreparedStatement st = con.prepareStatement(sql);
                 st.setBoolean(1, a.isEstado());
-                st.setInt(2, a.getIdAlumno());
+                    st.setInt(2, a.getDni());
                 
                 filas = st.executeUpdate();
             }
             
             if (filas>0) {
-                System.out.println("Alumno ("+a.getIdAlumno()+") actualizado con exito");
-                JOptionPane.showMessageDialog(null, "Alumno Actualizado con exito");
+                System.out.println("Alumno ("+a.getDni()+") actualizado con exito");
             }else
                 JOptionPane.showMessageDialog(null, "No se encuentra la ID del alumno","Atencion",JOptionPane.WARNING_MESSAGE);
         }catch(SQLException e) {
@@ -195,7 +194,7 @@ public class AlumnoData {
             JOptionPane.showMessageDialog(null, "No se encuentra el DNI del alumno","Atencion",JOptionPane.WARNING_MESSAGE);
     }
     
-    public void actualizarAlumno(Alumno a,String cambiar, int ID) {
+    public void actualizarAlumno2(Alumno a,String cambiar, int ID) {
         try {
             int filas=0;
             if (cambiar.contains("nombre")) {
@@ -300,7 +299,7 @@ public class AlumnoData {
         
         while (r.next()) {
             LocalDate fecha = r.getDate("fechaNacimiento").toLocalDate();
-            lista.add(new Alumno(r.getInt("dni"),r.getInt("idAlumno"),r.getString("nombre"),r.getString("apellido"),fecha,r.getBoolean("estado")));
+            lista.add(new Alumno(r.getInt("dni"),r.getInt("idAlumno"),r.getString("apellido"),r.getString("nombre"),fecha,r.getBoolean("estado")));
         }
         
         return lista;
