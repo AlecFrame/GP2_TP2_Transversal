@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class MateriaData {
@@ -147,5 +148,21 @@ public class MateriaData {
             String estado = (resultado.getBoolean("estado"))? "activo":"inactivo";
             System.out.println(resultado.getString("idMateria")+", "+resultado.getString("nombre")+", "+resultado.getInt("anio")+", "+estado);
         }
+    }
+    
+    public ArrayList<Materia> mostrarMaterias() throws SQLException {
+        
+        ArrayList<Materia> lista = new ArrayList<>();
+        String sql = "SELECT * FROM materia ORDER BY idMateria";
+        
+        PreparedStatement ps = con.prepareStatement(sql);
+        
+        ResultSet r = ps.executeQuery();
+        
+        while (r.next()) {
+            lista.add(new Materia(r.getInt("idMateria"),r.getString("nombre"),r.getInt("anio"),r.getBoolean("estado")));
+        }
+        
+        return lista;
     }
 }

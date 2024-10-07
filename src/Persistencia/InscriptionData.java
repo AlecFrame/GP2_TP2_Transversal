@@ -5,6 +5,7 @@ import Modelo.Alumno;
 import Modelo.Inscripcion;
 import Modelo.Materia;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -159,4 +160,18 @@ public class InscriptionData {
                 JOptionPane.showMessageDialog(null, "No se pudo actualizar la nota");
     }
     
-}
+    public ArrayList<Alumno> AlumnoInscripto (String materia) throws SQLException {
+        String sql = "SELECT a.idAlumno, a.dni, a.nombre, a.apellido FROM alumno a JOIN inscripcion i ON a.idAlumno = i.idAlumno JOIN materia m ON m.idMateria = i.idMateria WHERE m.nombre= ? ;";
+        PreparedStatement st = con.prepareStatement(sql);
+        st.setString(1, materia);
+        ResultSet r = st.executeQuery();
+        ArrayList<Alumno> listaA = new ArrayList<>();
+    while (r.next()) {
+        listaA.add(new Alumno(r.getInt("dni"),r.getInt("idAlumno"),r.getString("nombre"),r.getString("apellido")));
+        }
+    
+    return listaA;
+    }
+    
+
+    }

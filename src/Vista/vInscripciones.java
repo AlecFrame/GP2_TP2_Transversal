@@ -116,6 +116,11 @@ public class vInscripciones extends javax.swing.JInternalFrame {
                 jcbAlumnoItemStateChanged(evt);
             }
         });
+        jcbAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbAlumnoActionPerformed(evt);
+            }
+        });
 
         jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -352,6 +357,10 @@ public class vInscripciones extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Húbo algún problema con los tipos de datos: "+e,"Atencion",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jbEliminarActionPerformed
+
+    private void jcbAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbAlumnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbAlumnoActionPerformed
     
     public void cargarCombo() throws SQLException {
         Statement s = con.createStatement();

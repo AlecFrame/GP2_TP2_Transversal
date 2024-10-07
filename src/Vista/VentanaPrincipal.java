@@ -2,6 +2,8 @@
 package Vista;
 
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class VentanaPrincipal extends javax.swing.JFrame {
@@ -180,7 +182,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jmiAlumnosPorMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAlumnosPorMateriaActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        vConsultaAlumnoPorMateria v = new vConsultaAlumnoPorMateria();
+        vConsultaAlumnoPorMateria v = null;
+        try {
+            v = new vConsultaAlumnoPorMateria();
+        } catch (SQLException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         v.setVisible(true);
         escritorio.add(v);
         escritorio.moveToFront(v);

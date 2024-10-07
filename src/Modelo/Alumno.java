@@ -32,6 +32,13 @@ public class Alumno {
         this.fechaNacimiento = fechaNac;
         this.estado = activo;
     }
+    
+    public Alumno(int idAlumno,int dni, String apellido, String nombre) {
+        this.idAlumno = idAlumno;
+        this.dni = dni;
+        this.apellido = apellido;
+        this.nombre = nombre;
+    }
 
     public int getIdAlumno() {
         return idAlumno;
